@@ -3,6 +3,8 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { useLanguage } from "./components/LanguageContext";
+
 
 // Traductions EN/FR
 export const translations = {
@@ -200,8 +202,8 @@ function Navbar({ lang, setLang }: { lang: "en" | "fr"; setLang: any }) {
 }
 
 export default function Home() {
-  const [lang, setLang] = useState<"en" | "fr">("en");
-  const t = translations[lang];
+  const { lang } = useLanguage();
+const t = translations[lang];
 
   return (
     <main className="bg-black text-white min-h-screen relative scroll-smooth">
