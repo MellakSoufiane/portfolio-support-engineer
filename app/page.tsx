@@ -205,7 +205,7 @@ export default function Home() {
 
   return (
     <main className="bg-black text-white min-h-screen relative scroll-smooth">
-      <Navbar lang={lang} setLang={setLang} />
+      
 
       <div className="relative max-w-7xl mx-auto px-6 pt-40">
 
@@ -229,7 +229,7 @@ export default function Home() {
             <p className="text-xl text-gray-400 mb-8">{t.hero.subtitle}</p>
             <div className="flex gap-4">
               <Link
-                href="/dashboard"
+                href="/demo"
                 className="bg-gradient-to-r from-blue-500 to-purple-500 text-black px-6 py-3 rounded-xl font-semibold hover:scale-105 hover:shadow-lg transition"
               >
                 {t.hero.liveDemo}
@@ -342,7 +342,7 @@ export default function Home() {
             {/* Preview PDF réel */}
             <div className="border border-white/10 rounded-xl overflow-hidden">
               <iframe
-                src={lang === "en" ? "/cv-en.pdf" : "/cv-fr.pdf"}
+                src={lang === "en" ? "/CV_Soufiane_Mellak.pdf" : "/CV_Soufiane_Mellak.pdf"}
                 className="w-full h-[500px]"
               />
             </div>
@@ -350,15 +350,15 @@ export default function Home() {
             {/* Actions */}
             <div className="flex flex-col gap-4 justify-center">
               <a
-                href={lang === "en" ? "/cv-en.pdf" : "/cv-fr.pdf"}
+                href={lang === "en" ? "/CV_Soufiane_Mellak.pdf" : "/CV_Soufiane_Mellak.pdf"}
                 target="_blank"
-                className="border px-6 py-3 rounded-xl text-center hover:bg-white/10"
+                className="border px-6 py-3 rounded-xl text-center hover:bg-white/10" 
               >
                 👁️ {t.resume.view}
               </a>
 
               <a
-                href={lang === "en" ? "/cv-en.pdf" : "/cv-fr.pdf"}
+                href={lang === "en" ? "/CV_Soufiane_Mellak.pdf" : "/CV_Soufiane_Mellak.pdf"}
                 download
                 className="bg-blue-500 text-black px-6 py-3 rounded-xl text-center"
               >
