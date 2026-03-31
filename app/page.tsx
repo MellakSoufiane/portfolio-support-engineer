@@ -61,9 +61,15 @@ validating their behavior to ensure full compliance.`,
         "Deliver high-quality tested solutions",
       ],
     },
+    resume: {
+      title: "Resume",
+      view: "View CV",
+      download: "Download CV",
+      preview: "Preview",
+    },
     contact: {
       title: "Contact",
-      email: "your.email@email.com",
+      email: "mellaksoufiane4@gmail.com",
     },
     footer: "© 2026 — Soufiane Mellak — Senior Support Engineer",
   },
@@ -122,9 +128,15 @@ en validant leur bon fonctionnement.`,
         "Livraison de solutions testées et fiables",
       ],
     },
+     resume: {
+      title: "CV",
+      view: "Voir le CV",
+      download: "Télécharger",
+      preview: "Aperçu",
+    },
     contact: {
       title: "Contact",
-      email: "ton.email@email.com",
+      email: "mellaksoufiane4@gmail.com",
     },
     footer: "© 2026 — Soufiane Mellak — Ingénieur Support Senior",
   },
@@ -136,7 +148,7 @@ function Navbar({ lang, setLang }: { lang: "en" | "fr"; setLang: any }) {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["about", "projects", "experience", "contact"];
+      const sections = ["about", "projects", "experience","resume", "contact"];
       const scrollPos = window.scrollY + 200;
       for (const sec of sections) {
         const el = document.getElementById(sec);
@@ -155,7 +167,7 @@ function Navbar({ lang, setLang }: { lang: "en" | "fr"; setLang: any }) {
         <h1 className="font-bold text-lg tracking-wide">Soufiane Mellak</h1>
         <div className="flex items-center gap-6">
           <div className="hidden md:flex gap-8 text-sm text-gray-300">
-            {["about", "projects", "experience", "contact"].map((sec) => (
+            {["about", "projects", "experience","resume", "contact"].map((sec) => (
               <a
                 key={sec}
                 href={`#${sec}`}
@@ -164,8 +176,8 @@ function Navbar({ lang, setLang }: { lang: "en" | "fr"; setLang: any }) {
                 }`}
               >
                 {sec.charAt(0).toUpperCase() + sec.slice(1)}
-              </a>
-            ))}
+            </a>
+          ))}
           </div>
           <div className="flex gap-2">
             <button
@@ -315,7 +327,49 @@ export default function Home() {
           </div>
         </motion.section>
 
-        {/* CONTACT */}
+        {/* ✅ RESUME SECTION */}
+        <motion.section
+          id="resume"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="mb-40"
+        >
+          <h2 className="text-4xl mb-10">{t.resume.title}</h2>
+
+          <div className="grid md:grid-cols-2 gap-8">
+
+            {/* Preview PDF réel */}
+            <div className="border border-white/10 rounded-xl overflow-hidden">
+              <iframe
+                src={lang === "en" ? "/cv-en.pdf" : "/cv-fr.pdf"}
+                className="w-full h-[500px]"
+              />
+            </div>
+
+            {/* Actions */}
+            <div className="flex flex-col gap-4 justify-center">
+              <a
+                href={lang === "en" ? "/cv-en.pdf" : "/cv-fr.pdf"}
+                target="_blank"
+                className="border px-6 py-3 rounded-xl text-center hover:bg-white/10"
+              >
+                👁️ {t.resume.view}
+              </a>
+
+              <a
+                href={lang === "en" ? "/cv-en.pdf" : "/cv-fr.pdf"}
+                download
+                className="bg-blue-500 text-black px-6 py-3 rounded-xl text-center"
+              >
+                ⬇️ {t.resume.download}
+              </a>
+            </div>
+
+          </div>
+        </motion.section>
+
+         {/* CONTACT */}
         <motion.section
           id="contact"
           initial={{ opacity: 0, y: 50 }}
@@ -329,7 +383,7 @@ export default function Home() {
         </motion.section>
 
         {/* FOOTER */}
-        <section className="pb-20 text-center text-gray-500 text-sm">{t.footer}</section>
+        <footer className="text-center text-gray-500">{t.footer}</footer>
       </div>
     </main>
   );
