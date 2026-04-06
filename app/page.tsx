@@ -50,7 +50,7 @@ I also manage compliance with global payment networks by integrating updates and
       list: [
         {
           role: "Senior Support Engineer @ HPS",
-          period: "2025 — PRESENT",
+          period: "2026 — PRESENT",
           points: [
             "Team leadership: Mentoring and assisting team members in their daily technical tasks",
             "Supervising critical production incident resolutions and root cause analysis",
@@ -60,7 +60,7 @@ I also manage compliance with global payment networks by integrating updates and
         },
         {
           role: "Support Engineer II @ HPS",
-          period: "2024 — 2025",
+          period: "2025 — 2026",
           points: [
             "End-to-end incident management and troubleshooting for PowerCard solutions",
             "Preparation and execution of comprehensive test campaigns",
@@ -70,7 +70,7 @@ I also manage compliance with global payment networks by integrating updates and
         },
         {
           role: "Support Engineer I (Junior) @ HPS",
-          period: "2023 — 2024",
+          period: "2023 — 2025",
           points: [
             "Integration of network enhancements and critical defect fixes",
             "Unit testing and functional validation of payment modules",
@@ -441,41 +441,61 @@ export default function Home() {
                   }
                 </p>
                 <div className="flex items-center gap-3 p-4 bg-black/40 border border-white/5 rounded-2xl w-fit">
-                    <span className="text-2xl">🌍</span>
-                    <span className="text-sm font-mono text-gray-300">Open to Global Opportunities</span>
+                    <span className="text-2xl animate-pulse">🌍</span>
+                    <span className="text-sm font-mono text-gray-300 uppercase tracking-wider">Open to Global Opportunities</span>
                 </div>
               </div>
 
-              <div className="flex flex-col gap-6">
+              <div className="flex flex-col gap-4">
+                {/* Email Card */}
                 <motion.a 
                   href={`mailto:${t.contact.email}`}
-                  whileHover={{ scale: 1.03, borderColor: "rgba(168, 85, 247, 0.4)" }}
-                  className="group flex items-center gap-6 p-6 bg-black/40 border border-white/10 rounded-2xl transition-all duration-300"
+                  whileHover={{ scale: 1.02, x: 5, borderColor: "rgba(168, 85, 247, 0.4)" }}
+                  className="group flex items-center gap-6 p-5 bg-black/40 border border-white/10 rounded-2xl transition-all duration-300"
                 >
-                  <div className="flex-shrink-0 w-14 h-14 rounded-full bg-gradient-to-br from-blue-500/20 to-purple-500/20 border border-purple-500/20 flex items-center justify-center text-3xl group-hover:scale-110 transition-transform">
+                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-blue-500/20 to-purple-500/20 border border-purple-500/20 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
                     ✉️
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h4 className="text-sm font-semibold text-gray-500 uppercase tracking-widest mb-1">Email</h4>
-                    <p className="text-lg text-white font-medium break-all group-hover:text-purple-300 transition-colors">
+                    <h4 className="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">Email</h4>
+                    <p className="text-base text-white font-medium break-all group-hover:text-purple-300 transition-colors">
                       {t.contact.email}
                     </p>
                   </div>
                 </motion.a>
 
+                {/* LinkedIn Card */}
                 <motion.a 
                   href="https://www.linkedin.com/in/soufiane-mellak-8101b0216/"
                   target="_blank"
-                  whileHover={{ scale: 1.03, borderColor: "rgba(59, 130, 246, 0.4)" }}
-                  className="group flex items-center gap-6 p-6 bg-black/40 border border-white/10 rounded-2xl transition-all duration-300"
+                  whileHover={{ scale: 1.02, x: 5, borderColor: "rgba(59, 130, 246, 0.4)" }}
+                  className="group flex items-center gap-6 p-5 bg-black/40 border border-white/10 rounded-2xl transition-all duration-300"
                 >
-                  <div className="flex-shrink-0 w-14 h-14 rounded-full bg-gradient-to-br from-blue-500/20 to-cyan-500/20 border border-blue-500/20 flex items-center justify-center text-3xl group-hover:scale-110 transition-transform">
+                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-blue-500/20 to-cyan-500/20 border border-blue-500/20 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
                     🔗
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h4 className="text-sm font-semibold text-gray-500 uppercase tracking-widest mb-1">Network</h4>
-                    <p className="text-lg text-white font-medium group-hover:text-blue-300 transition-colors">
-                      linkedin/soufiane-mellak
+                    <h4 className="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">Professional Network</h4>
+                    <p className="text-base text-white font-medium group-hover:text-blue-300 transition-colors">
+                      linkedin.com/in/soufiane-mellak
+                    </p>
+                  </div>
+                </motion.a>
+
+                {/* GitHub Card */}
+                <motion.a 
+                  href="https://github.com/MellakSoufiane" // Remplace par ton lien GitHub
+                  target="_blank"
+                  whileHover={{ scale: 1.02, x: 5, borderColor: "rgba(255, 255, 255, 0.2)" }}
+                  className="group flex items-center gap-6 p-5 bg-black/40 border border-white/10 rounded-2xl transition-all duration-300"
+                >
+                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+                    💻
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h4 className="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">Codebase</h4>
+                    <p className="text-base text-white font-medium group-hover:text-gray-300 transition-colors">
+                      github.com/MellakSoufiane
                     </p>
                   </div>
                 </motion.a>
