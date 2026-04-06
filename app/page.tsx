@@ -47,12 +47,37 @@ I also manage compliance with global payment networks by integrating updates and
     },
     experience: {
       title: "Professional Experience",
-      role: "Senior Support Engineer @ HPS",
-      points: [
-        "Resolve critical production incidents impacting payment systems",
-        "Perform deep analysis and root cause identification",
-        "Validate fixes using internal simulation tools",
-        "Ensure compliance with Visa, Mastercard, UPI and Amex",
+      list: [
+        {
+          role: "Senior Support Engineer @ HPS",
+          period: "2025 — PRESENT",
+          points: [
+            "Team leadership: Mentoring and assisting team members in their daily technical tasks",
+            "Supervising critical production incident resolutions and root cause analysis",
+            "Ensuring high-level compliance and delivery standards for payment solutions",
+            "Coordinating complex support workflows and technical escalations"
+          ],
+        },
+        {
+          role: "Support Engineer II @ HPS",
+          period: "2024 — 2025",
+          points: [
+            "End-to-end incident management and troubleshooting for PowerCard solutions",
+            "Preparation and execution of comprehensive test campaigns",
+            "Validation of fixes using internal simulation tools and network simulators",
+            "Level 2 technical support for international payment networks"
+          ],
+        },
+        {
+          role: "Support Engineer I (Junior) @ HPS",
+          period: "2023 — 2024",
+          points: [
+            "Integration of network enhancements and critical defect fixes",
+            "Unit testing and functional validation of payment modules",
+            "Monitoring system logs and assisting in basic troubleshooting",
+            "Assisting in the deployment of patches and software updates"
+          ],
+        }
       ],
     },
     resume: {
@@ -106,12 +131,37 @@ Je gère également la conformité avec les réseaux internationaux Visa, Master
     },
     experience: {
       title: "Parcours Professionnel",
-      role: "Ingénieur Support Senior @ HPS",
-      points: [
-        "Résolution d’incidents critiques en production",
-        "Analyse approfondie et identification des causes racines",
-        "Validation via simulateurs internes",
-        "Assurer la conformité Visa, Mastercard, UPI et Amex",
+      list: [
+        {
+          role: "Ingénieur Support Senior @ HPS",
+          period: "2025 — PRÉSENT",
+          points: [
+            "Leadership technique : Encadrement et assistance de l'équipe dans leurs tâches quotidiennes",
+            "Suivi opérationnel et supervision de la résolution des incidents critiques",
+            "Garant de la qualité des livrables et de la conformité aux standards de paiement",
+            "Coordination des flux de support et des escalades techniques complexes"
+          ],
+        },
+        {
+          role: "Ingénieur Support II @ HPS",
+          period: "2024 — 2025",
+          points: [
+            "Traitement complet des incidents et troubleshooting sur les solutions PowerCard",
+            "Préparation et gestion des campagnes de tests (Testing & QA)",
+            "Validation des correctifs via simulateurs internes et outils de diagnostic",
+            "Support technique de niveau 2 pour les réseaux internationaux"
+          ],
+        },
+        {
+          role: "Ingénieur Support I (Junior) @ HPS",
+          period: "2023 — 2024",
+          points: [
+            "Intégration des enhancements (améliorations réseaux) et des critical defects",
+            "Réalisation des tests unitaires et validation fonctionnelle",
+            "Analyse de premier niveau des logs et monitoring système",
+            "Participation au déploiement des patches et mises à jour logicielles"
+          ],
+        }
       ],
     },
     resume: {
@@ -314,21 +364,25 @@ export default function Home() {
           </div>
         </section>
 
-        {/* EXPERIENCE SECTION */}
+        {/* EXPERIENCE SECTION - DYNAMIC LIST */}
         <section id="experience" className="max-w-4xl mx-auto mb-40">
           <h2 className="text-4xl font-bold mb-12 text-center">{t.experience.title}</h2>
-          <div className="relative pl-8 border-l border-purple-500/30">
-            <div className="absolute w-4 h-4 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full -left-[8.5px] top-1 shadow-[0_0_15px_rgba(168,85,247,0.5)]" />
-            <h3 className="text-2xl font-bold text-white mb-2">{t.experience.role}</h3>
-            <p className="text-purple-400 font-mono text-sm mb-6 uppercase tracking-widest font-bold">2023 — PRESENT</p>
-            <ul className="space-y-4">
-              {t.experience.points.map((pt, i) => (
-                <li key={i} className="flex items-start gap-3 text-gray-400">
-                  <span className="text-purple-500 mt-1">▹</span>
-                  {pt}
-                </li>
-              ))}
-            </ul>
+          <div className="space-y-12">
+            {t.experience.list.map((exp, index) => (
+              <div key={index} className="relative pl-8 border-l border-purple-500/30">
+                <div className="absolute w-4 h-4 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full -left-[8.5px] top-1 shadow-[0_0_15px_rgba(168,85,247,0.5)]" />
+                <h3 className="text-2xl font-bold text-white mb-2">{exp.role}</h3>
+                <p className="text-purple-400 font-mono text-sm mb-6 uppercase tracking-widest font-bold">{exp.period}</p>
+                <ul className="space-y-4">
+                  {exp.points.map((pt, i) => (
+                    <li key={i} className="flex items-start gap-3 text-gray-400">
+                      <span className="text-purple-500 mt-1">▹</span>
+                      {pt}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
         </section>
 
