@@ -2,10 +2,9 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import Link from "next/link";
 import { useLanguage } from "./components/LanguageContext";
 
-// Traductions EN/FR
+// --- TRADUCTIONS EN/FR ---
 export const translations = {
   en: {
     hero: {
@@ -50,7 +49,7 @@ I also manage compliance with global payment networks by integrating updates and
       list: [
         {
           role: "Senior Support Engineer @ HPS",
-          period: "2026 — PRESENT",
+          period: "2025 — PRESENT",
           points: [
             "Team leadership: Mentoring and assisting team members in their daily technical tasks",
             "Supervising critical production incident resolutions and root cause analysis",
@@ -60,7 +59,7 @@ I also manage compliance with global payment networks by integrating updates and
         },
         {
           role: "Support Engineer II @ HPS",
-          period: "2025 — 2026",
+          period: "2024 — 2025",
           points: [
             "End-to-end incident management and troubleshooting for PowerCard solutions",
             "Preparation and execution of comprehensive test campaigns",
@@ -70,7 +69,7 @@ I also manage compliance with global payment networks by integrating updates and
         },
         {
           role: "Support Engineer I (Junior) @ HPS",
-          period: "2023 — 2025",
+          period: "2023 — 2024",
           points: [
             "Integration of network enhancements and critical defect fixes",
             "Unit testing and functional validation of payment modules",
@@ -79,6 +78,15 @@ I also manage compliance with global payment networks by integrating updates and
           ],
         }
       ],
+    },
+    skills: {
+      title: "Technical Stack",
+      categories: [
+        { name: "Payment Protocols", items: ["ISO 8583", "JSON API", "EMV", "PCI-DSS"] },
+        { name: "Support & Analysis", items: ["SQL Queries", "Log Debugging", "Wireshark", "Postman"] },
+        { name: "Banking Solutions", items: ["PowerCard", "Switching", "Clearing", "Authorization"] },
+        { name: "Monitoring", items: ["Splunk", "ELK Stack", "Grafana", "AppDynamics"] }
+      ]
     },
     resume: {
       title: "Resume",
@@ -164,6 +172,15 @@ Je gère également la conformité avec les réseaux internationaux Visa, Master
         }
       ],
     },
+    skills: {
+      title: "Stack Technique",
+      categories: [
+        { name: "Protocoles Paiement", items: ["ISO 8583", "JSON API", "EMV", "PCI-DSS"] },
+        { name: "Support & Analyse", items: ["Requêtes SQL", "Debugging Logs", "Wireshark", "Postman"] },
+        { name: "Solutions Bancaires", items: ["PowerCard", "Switching", "Clearing", "Autorisation"] },
+        { name: "Monitoring", items: ["Splunk", "ELK Stack", "Grafana", "AppDynamics"] }
+      ]
+    },
     resume: {
       title: "Curriculum Vitae",
       view: "Voir le CV",
@@ -180,8 +197,7 @@ Je gère également la conformité avec les réseaux internationaux Visa, Master
 export default function Home() {
   const { lang } = useLanguage();
   const t = translations[lang || "fr"];
-
-  // État du simulateur
+  const [terminalOpen, setTerminalOpen] = useState(false);
   const [txStep, setTxStep] = useState<"idle" | "processing" | "success">("idle");
 
   const runSimulation = () => {
@@ -235,6 +251,7 @@ export default function Home() {
               >
                 {t.hero.liveDemo}
               </button>
+              
               <a href="#projects" className="border border-white/20 px-8 py-3 rounded-xl hover:bg-white/5 transition font-medium">
                 {t.hero.viewWork}
               </a>
@@ -258,16 +275,16 @@ export default function Home() {
                 <span className="text-[10px] text-gray-500 font-mono italic">iso8583_engine_v3.log</span>
               </div>
 
-              <div className="bg-black/60 rounded-2xl p-5 mb-4 min-h-[160px] flex flex-col justify-center border border-white/5 relative">
+              <div className="bg-black/60 rounded-2xl p-5 mb-4 min-h-[160px] flex flex-col justify-center border border-white/5 relative font-mono">
                 {txStep === "idle" && (
                   <div className="text-center space-y-3">
-                    <p className="text-gray-500 font-mono text-xs uppercase tracking-widest">System Ready</p>
-                    <p className="text-purple-300/40 font-mono text-[10px]">Awaiting MTI 0100 Request...</p>
+                    <p className="text-gray-500 text-xs uppercase tracking-widest">System Ready</p>
+                    <p className="text-purple-300/40 text-[10px]">Awaiting MTI 0100 Request...</p>
                   </div>
                 )}
 
                 {txStep === "processing" && (
-                  <div className="space-y-2 font-mono text-[11px]">
+                  <div className="space-y-2 text-[11px]">
                     <p className="text-blue-400 animate-pulse"> {">"} SENDING 0100 AUTH REQ</p>
                     <p className="text-gray-500 italic"> {">"} Routing via HPS Switch...</p>
                     <p className="text-gray-500 italic"> {">"} Validating Network Rules...</p>
@@ -283,7 +300,7 @@ export default function Home() {
                 )}
 
                 {txStep === "success" && (
-                  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="font-mono text-[11px]">
+                  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-[11px]">
                     <p className="text-green-400 mb-2"> {">"} RECEIVED 0110 RESPONSE</p>
                     <pre className="text-purple-300 bg-purple-500/5 p-3 rounded-lg border border-purple-500/10">
 {`{
@@ -340,6 +357,49 @@ export default function Home() {
           </p>
         </motion.section>
 
+        {/* NETWORK STATUS WIDGET & SKILLS */}
+        <section className="mb-40">
+          <div className="flex flex-col md:flex-row gap-8 items-start">
+            <div className="w-full md:w-1/3 bg-white/5 border border-white/10 p-6 rounded-3xl backdrop-blur-xl">
+              <div className="flex items-center gap-2 mb-6">
+                <div className="w-2 h-2 bg-green-500 rounded-full animate-ping" />
+                <span className="text-xs font-mono text-gray-400 uppercase tracking-widest font-bold">Network Gateways</span>
+              </div>
+              <div className="space-y-4">
+                {[
+                  { name: "VISA NET", status: "Operational", color: "text-green-400" },
+                  { name: "MASTERCARD", status: "Operational", color: "text-green-400" },
+                  { name: "AMEX / UPI", status: "Operational", color: "text-green-400" },
+                  { name: "POWERCARD L2", status: "Standby", color: "text-blue-400" },
+                ].map((net, i) => (
+                  <div key={i} className="flex justify-between items-center py-2 border-b border-white/5">
+                    <span className="text-sm font-mono text-gray-300">{net.name}</span>
+                    <span className={`text-[10px] font-bold uppercase tracking-tighter ${net.color}`}>● {net.status}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="w-full md:w-2/3">
+              <h2 className="text-3xl font-bold mb-8">{t.skills.title}</h2>
+              <div className="grid grid-cols-2 gap-4">
+                {t.skills.categories.map((cat, i) => (
+                  <div key={i} className="p-5 bg-gradient-to-br from-white/5 to-transparent border border-white/10 rounded-2xl">
+                    <h4 className="text-purple-400 text-xs font-bold uppercase mb-3 tracking-widest">{cat.name}</h4>
+                    <div className="flex flex-wrap gap-2">
+                      {cat.items.map((item, idx) => (
+                        <span key={idx} className="text-sm text-gray-400">
+                          {item}{idx !== cat.items.length - 1 ? " •" : ""}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* PROJECTS SECTION */}
         <section id="projects" className="mb-40">
           <h2 className="text-4xl font-bold mb-12 text-center">{t.projects.title}</h2>
@@ -364,7 +424,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* EXPERIENCE SECTION - DYNAMIC LIST */}
+        {/* EXPERIENCE SECTION */}
         <section id="experience" className="max-w-4xl mx-auto mb-40">
           <h2 className="text-4xl font-bold mb-12 text-center">{t.experience.title}</h2>
           <div className="space-y-12">
@@ -398,7 +458,9 @@ export default function Home() {
             </div>
             <div className="flex flex-col gap-6">
               <p className="text-gray-400 text-lg">
-                Consultez mon profil complet détaillé pour en savoir plus sur mon expertise en solutions de paiement.
+                {lang === 'fr' 
+                  ? "Consultez mon profil complet détaillé pour en savoir plus sur mon expertise en solutions de paiement."
+                  : "Check out my full profile to learn more about my expertise in payment solutions."}
               </p>
               <div className="flex gap-4">
                 <a href="/CV_Soufiane_Mellak.pdf" target="_blank" className="flex-1 text-center bg-white text-black py-4 rounded-2xl font-bold hover:bg-gray-200 transition">
@@ -447,56 +509,27 @@ export default function Home() {
               </div>
 
               <div className="flex flex-col gap-4">
-                {/* Email Card */}
-                <motion.a 
-                  href={`mailto:${t.contact.email}`}
-                  whileHover={{ scale: 1.02, x: 5, borderColor: "rgba(168, 85, 247, 0.4)" }}
-                  className="group flex items-center gap-6 p-5 bg-black/40 border border-white/10 rounded-2xl transition-all duration-300"
-                >
-                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-blue-500/20 to-purple-500/20 border border-purple-500/20 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
-                    ✉️
-                  </div>
+                <motion.a href={`mailto:${t.contact.email}`} whileHover={{ scale: 1.02, x: 5, borderColor: "rgba(168, 85, 247, 0.4)" }} className="group flex items-center gap-6 p-5 bg-black/40 border border-white/10 rounded-2xl transition-all duration-300">
+                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-blue-500/20 to-purple-500/20 border border-purple-500/20 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">✉️</div>
                   <div className="flex-1 min-w-0">
                     <h4 className="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">Email</h4>
-                    <p className="text-base text-white font-medium break-all group-hover:text-purple-300 transition-colors">
-                      {t.contact.email}
-                    </p>
+                    <p className="text-base text-white font-medium break-all group-hover:text-purple-300 transition-colors">{t.contact.email}</p>
                   </div>
                 </motion.a>
 
-                {/* LinkedIn Card */}
-                <motion.a 
-                  href="https://www.linkedin.com/in/soufiane-mellak-8101b0216/"
-                  target="_blank"
-                  whileHover={{ scale: 1.02, x: 5, borderColor: "rgba(59, 130, 246, 0.4)" }}
-                  className="group flex items-center gap-6 p-5 bg-black/40 border border-white/10 rounded-2xl transition-all duration-300"
-                >
-                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-blue-500/20 to-cyan-500/20 border border-blue-500/20 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
-                    🔗
-                  </div>
+                <motion.a href="https://www.linkedin.com/in/soufiane-mellak-8101b0216/" target="_blank" whileHover={{ scale: 1.02, x: 5, borderColor: "rgba(59, 130, 246, 0.4)" }} className="group flex items-center gap-6 p-5 bg-black/40 border border-white/10 rounded-2xl transition-all duration-300">
+                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-blue-500/20 to-cyan-500/20 border border-blue-500/20 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">🔗</div>
                   <div className="flex-1 min-w-0">
-                    <h4 className="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">Professional Network</h4>
-                    <p className="text-base text-white font-medium group-hover:text-blue-300 transition-colors">
-                      linkedin.com/in/soufiane-mellak
-                    </p>
+                    <h4 className="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">Network</h4>
+                    <p className="text-base text-white font-medium group-hover:text-blue-300 transition-colors">linkedin/soufiane-mellak</p>
                   </div>
                 </motion.a>
 
-                {/* GitHub Card */}
-                <motion.a 
-                  href="https://github.com/MellakSoufiane" // Remplace par ton lien GitHub
-                  target="_blank"
-                  whileHover={{ scale: 1.02, x: 5, borderColor: "rgba(255, 255, 255, 0.2)" }}
-                  className="group flex items-center gap-6 p-5 bg-black/40 border border-white/10 rounded-2xl transition-all duration-300"
-                >
-                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
-                    💻
-                  </div>
+                <motion.a href="https://github.com/MellakSoufiane" target="_blank" whileHover={{ scale: 1.02, x: 5, borderColor: "rgba(255, 255, 255, 0.2)" }} className="group flex items-center gap-6 p-5 bg-black/40 border border-white/10 rounded-2xl transition-all duration-300">
+                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">💻</div>
                   <div className="flex-1 min-w-0">
                     <h4 className="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">Codebase</h4>
-                    <p className="text-base text-white font-medium group-hover:text-gray-300 transition-colors">
-                      github.com/MellakSoufiane
-                    </p>
+                    <p className="text-base text-white font-medium group-hover:text-gray-300 transition-colors">github.com/MellakSoufiane</p>
                   </div>
                 </motion.a>
               </div>
@@ -508,6 +541,39 @@ export default function Home() {
           <p>{t.footer}</p>
         </footer>
       </div>
+
+      {/* TERMINAL EASTER EGG (Placé à la fin pour le Z-INDEX) */}
+      <div className="fixed bottom-6 right-6 z-[999]">
+        <button 
+          onClick={() => setTerminalOpen(!terminalOpen)}
+          className="w-12 h-12 bg-purple-600 border border-white/20 rounded-full flex items-center justify-center backdrop-blur-lg hover:scale-110 active:scale-95 transition-all shadow-[0_0_20px_rgba(168,85,247,0.4)]"
+        >
+          <span className="font-mono text-xs text-white tracking-tighter">{">_"}</span>
+        </button>
+
+        {terminalOpen && (
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            className="absolute bottom-16 right-0 w-[320px] bg-[#0d0d0d] border border-white/10 rounded-2xl shadow-2xl overflow-hidden font-mono"
+          >
+            <div className="bg-white/5 p-3 flex justify-between items-center border-b border-white/5">
+              <span className="text-[10px] text-gray-500 uppercase font-bold">HPS-Support-Console</span>
+              <button onClick={() => setTerminalOpen(false)} className="text-gray-600 hover:text-white px-2">×</button>
+            </div>
+            <div className="p-4 text-[11px] space-y-2 max-h-[250px] overflow-y-auto">
+              <p className="text-gray-500">$ whoami</p>
+              <p className="text-purple-400 font-bold">Soufiane Mellak: Ingénieur Solutions de Paiement</p>
+              <p className="text-gray-500">$ uptime</p>
+              <p className="text-green-400">System Load: Stable | 24/7 Availability</p>
+              <p className="text-gray-500">$ fetch --latest-project</p>
+              <p className="text-blue-400 italic">Loading: Payment Simulation Platform [OK]</p>
+              <p className="text-gray-500">$ _</p>
+            </div>
+          </motion.div>
+        )}
+      </div>
+
     </main>
   );
 }
